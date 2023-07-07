@@ -1,10 +1,10 @@
 NAME = ex02
 
-HEADERS_LIST = 
+HEADERS_LIST = Account.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SOURCES_LIST = 
+SOURCES_LIST = tests.cpp Account.cpp
 SOURCES_DIRECTORY = ./sources/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 

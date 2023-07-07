@@ -1,10 +1,10 @@
 NAME = ex01
 
-HEADERS_LIST = 
+HEADERS_LIST = Contact.hpp Phonebook.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SOURCES_LIST = 
+SOURCES_LIST = Contact.cpp PhoneBook.cpp main.cpp
 SOURCES_DIRECTORY = ./sources/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
@@ -12,8 +12,8 @@ OBJECTS_LIST = $(patsubst %.cpp, %.o, $(SOURCES_LIST))
 OBJECTS_DIRECTORY = objects/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
-CC = gcc
-FLAGS = -Wall -Werror -Wextra -std=c++98 -g3
+CC = g++
+FLAGS = -Wall -Werror -Wextra #-std=c++98 -g
 
 INCLUDES = -I $(HEADERS_DIRECTORY)
 
@@ -22,13 +22,13 @@ INCLUDES = -I $(HEADERS_DIRECTORY)
 all: ## Compiles the whole project
 	@make -s $(NAME)
 
-$(NAME): $(LIBFT) $(MINILIBX) $(OBJECTS_DIRECTORY) $(OBJECTS)
+$(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@$(CC) $(FLAGS) $(INCLUDES) $(OBJECTS) -o $(NAME)
 
 $(OBJECTS_DIRECTORY): ## Creates the objects directory
 	@mkdir -p $(OBJECTS_DIRECTORY)
 
-$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS) ## Compiles each '*.cpp'
+$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp ## Compiles each '*.cpp'
 	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 
 clean: ## Cleans all the '*.o' files and deletes the objects directory

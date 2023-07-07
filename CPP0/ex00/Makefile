@@ -1,4 +1,4 @@
-NAME = ex00
+NAME = megaphone
 
 HEADERS_LIST = 
 HEADERS_DIRECTORY = ./includes/
