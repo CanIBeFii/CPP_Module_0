@@ -1,11 +1,10 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie( void ) {
+Zombie::Zombie( void ) : _name("") {
 	std::cout << "Zombie constructor called!!" << std::endl;
 }
 
-Zombie::Zombie( std::string name ) {
-	_name = name;
+Zombie::Zombie( std::string name ) : _name( name ) {
 	std::cout << "Zombie called " << _name << " created!" <<std::endl;
 }
 
@@ -14,5 +13,5 @@ Zombie::~Zombie( void ) {
 }
 
 void	Zombie::announce( void ) {
-	std::cout <<  _name << ": >: BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout <<  _name << ":  BraiiiiiiinnnzzzZ..." << std::endl;
 }
