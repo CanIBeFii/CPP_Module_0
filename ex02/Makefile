@@ -33,6 +33,7 @@ $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp ## Compiles each '*.cpp'
 
 clean: ## Cleans all the '*.o' files and deletes the objects directory
 	@rm -rf $(OBJECTS_DIRECTORY)
+	@rm -f test.txt test2.txt diff.txt
 
 fclean: clean ## Calls clean and deletes all executables and compiled libs
 	@rm -f $(NAME)
@@ -40,11 +41,16 @@ fclean: clean ## Calls clean and deletes all executables and compiled libs
 re: ## Deep cleans the project and recompiles it
 	@make -s fclean
 	@make -s all
-	
+
+test: ## Run the test
+	@./$(NAME) | awk '{print $$2}' > test.txt
+	@cat 19920104_091532.log | awk '{print $$2}' > test2.txt
+	@diff test.txt test2.txt > diff.txt
+
 help: ## Shows all the options and it's uses
 	@echo "usage: make [target]"
 	@echo ""
 	@egrep "^(.+)\:\ .*##\ (.+)" ${MAKEFILE_LIST} | sed 's/:.*##/#/' | column -t -c 2 -s '#'
 	@curl -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash
 
-.PHONY	: re fclean clean all
+.PHONY	: re fclean clean all test
