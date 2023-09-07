@@ -3,6 +3,7 @@
 
 # include "Contact.hpp"
 # include <iostream>
+# include <cstdlib>
 
 class PhoneBook {
 private:
@@ -15,7 +16,7 @@ public:
 
 	void		addContact();
 	void		searchContact();
-	std::string	getContactField(std::string field);
+	std::string	getContactField( std::string field );
 };
 
 #endif
